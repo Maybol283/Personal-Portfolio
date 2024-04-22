@@ -19,12 +19,12 @@ export default function Header() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1 ">
-          <h1 className="">George Vanden</h1>
+          <h1 className="bg-palette-1 rounded-3xl p-3 font-bold ">GV</h1>
         </div>
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-red-300"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-palette-1"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>

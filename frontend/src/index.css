@@ -23,24 +23,5 @@ body,
   padding: 0;
   color: white;
   font-family: sans-serif;
-}
-
-.custom-border {
-  animation: bubbleRadius 4s infinite ease-in-out;
-}
-
-@keyframes bubbleRadius {
-  0%,
-  100% {
-    border-radius: 61% 39% 74% 26% / 31% 30% 70% 69%;
-  }
-  25% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-  }
-  50% {
-    border-radius: 40% 60% 40% 60% / 55% 45% 55% 45%;
-  }
-  75% {
-    border-radius: 30% 70% 30% 70% / 40% 60% 40% 60%;
-  }
+  background-color: #00224d;
 }
