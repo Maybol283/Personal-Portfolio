@@ -7,11 +7,8 @@ import {
   faCss3,
   faPhp,
   faLaravel,
-  faGit,
   faGitAlt,
   faNodeJs,
-  faGithubAlt,
-  faGithub,
   faGithubSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
