@@ -7,7 +7,7 @@ import Contact from "./components/Contact";
 
 function App() {
   return (
-    <div className="size-full bg-palette-4">
+    <div className="size-full">
       <IntroPage></IntroPage>
       <About></About>
       <TechStack></TechStack>

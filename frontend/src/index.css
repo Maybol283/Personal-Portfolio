@@ -4,10 +4,10 @@
 
 @layer components {
   .title-text {
-    @apply text-5xl md:text-7xl lg:text-9xl;
+    @apply text-6xl md:text-7xl lg:text-8xl;
   }
   .subtitle-text {
-    @apply text-3xl md:text-5xl lg:text-7xl;
+    @apply text-4xl md:text-6xl lg:text-7xl;
   }
   .text {
     @apply text-lg md:text-xl lg:text-2xl;
@@ -21,7 +21,16 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  color: white;
+
   font-family: sans-serif;
+  background-color: white;
+}
+
+.background {
   background-color: #00224d;
+  opacity: 1;
+  background-image: radial-gradient(#a0153e 2px, transparent 2px),
+    radial-gradient(#a0153e 2px, #00224d 2px);
+  background-size: 80px 80px;
+  background-position: 0 0, 40px 40px;
 }
