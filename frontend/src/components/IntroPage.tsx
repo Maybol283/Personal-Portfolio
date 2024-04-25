@@ -1,10 +1,16 @@
 import React from "react";
 import headshot from "../assets/HeadshotNoBG.png";
-import { useSpring, animated } from "@react-spring/web";
-import { useEffect } from "react";
-import AnimatedChevron from "../components/SmallComponents/AnimatedChevron";
+import { useSprings, useSpring, animated } from "@react-spring/web";
+import { useEffect, useState } from "react";
+import {
+  AnimatedChevron,
+  Trail,
+} from "../components/SmallComponents/AnimatedItems";
 
 export default function IntroPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [monikers, setMonikers] = useState(["Software", "Engineer"]);
+
   const [textChange, textChangeApi] = useSpring(() => ({
     from: { opacity: 0, y: -5, x: -5 },
     to: { opacity: 1, y: 0, x: 0 },
@@ -19,6 +25,17 @@ export default function IntroPage() {
     borderBottomRightRadius: "350px",
     config: { duration: 1000 },
   }));
+
+  const popUp = useSpring({
+    from: { opacity: 0, scale: 0 },
+    to: { opacity: 1, scale: 1 },
+    config: {
+      mass: 2, // Mass of the spring object; increasing it makes the movement feel heavier
+      tension: 250, // Tension of the spring; decreasing it makes the spring less stiff
+      friction: 20, // Friction that opposes the motion; decreasing it allows the spring to oscillate longer
+    },
+    delay: 1000,
+  });
 
   useEffect(() => {
     const changeBorderRadius = () => {
@@ -40,17 +57,26 @@ export default function IntroPage() {
       <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 items-center justify-items-center">
         <div className="">
           <animated.div
-            style={bubbleEffect}
+            style={{ ...popUp, ...bubbleEffect }}
             className="size-48 sm:size-56 md:size-80 lg:size-96 overflow-hidden"
           >
             <img src={headshot} className="bg-palette-1 size-full object-fit" />
           </animated.div>
         </div>
         <div className="text-center overflow-hidden pb-1">
-          <animated.h1 style={textChange} className="subtitle-text">
-            Hi I'm <span className="italic text-palette-1">George</span>
-          </animated.h1>
-          <p className="title-text">Software Engineer</p>
+          <h1 className="subtitle-text">
+            <Trail delayAmount={500} pulse={false} setMonikers={setMonikers}>
+              <span>Hi</span>
+              <span>I'm</span>
+              <span className="italic text-palette-1">George</span>
+            </Trail>
+          </h1>
+          <p className="title-text">
+            <Trail delayAmount={2000} pulse={true} setMonikers={setMonikers}>
+              <span>{monikers[0]}</span>
+              <span>{monikers[1]}</span>
+            </Trail>
+          </p>
         </div>
       </div>
       <div className="flex flex-col items-center justify-items-center sm:mt-10">
