@@ -5,11 +5,44 @@ import { useEffect, useState } from "react";
 import {
   AnimatedChevron,
   Trail,
+  PulseTrail,
 } from "../components/SmallComponents/AnimatedItems";
 
 export default function IntroPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [monikers, setMonikers] = useState(["Software", "Engineer"]);
+
+  const monikerChooser = () => {
+    const monikerList = [
+      ["Software", "Engineer"],
+      ["Bug", "Creator"],
+      ["Web", "Designer"],
+      ["Error", "Enthusiast"],
+    ];
+
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % monikerList.length; // Wrap around using modulus
+      setMonikers(monikerList[newIndex]); // Set monikers based on the new index
+      return newIndex;
+    });
+  };
+
+  const [pulse, pulseApi] = useSpring(() => ({
+    from: { opacity: 0, transform: "translateY(20px)" },
+    to: async (next, cancel) => {
+      await next({ opacity: 1, transform: "translateY(0px)" });
+      pulseApi.pause();
+      setTimeout(() => {
+        pulseApi.resume();
+      }, 2000);
+      await next({ opacity: 0, transform: "translateY(20px)" });
+
+      await monikerChooser();
+    },
+    delay: 1000,
+    loop: { reverse: true },
+    reset: true,
+  }));
 
   const [textChange, textChangeApi] = useSpring(() => ({
     from: { opacity: 0, y: -5, x: -5 },
@@ -34,7 +67,7 @@ export default function IntroPage() {
       tension: 250, // Tension of the spring; decreasing it makes the spring less stiff
       friction: 20, // Friction that opposes the motion; decreasing it allows the spring to oscillate longer
     },
-    delay: 1000,
+    delay: 2000,
   });
 
   useEffect(() => {
@@ -54,7 +87,7 @@ export default function IntroPage() {
 
   return (
     <div className="pt-20  flex flex-col justify-center items-center font-bold size-full">
-      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 items-center justify-items-center">
+      <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 items-center justify-items-center min-w-full">
         <div className="">
           <animated.div
             style={{ ...popUp, ...bubbleEffect }}
@@ -63,19 +96,21 @@ export default function IntroPage() {
             <img src={headshot} className="bg-palette-1 size-full object-fit" />
           </animated.div>
         </div>
-        <div className="text-center overflow-hidden pb-1">
+        <div className="text-center overflow-hidden pb-1 w-full">
           <h1 className="subtitle-text">
-            <Trail delayAmount={500} pulse={false} setMonikers={setMonikers}>
+            <Trail delayAmount={500}>
               <span>Hi</span>
               <span>I'm</span>
               <span className="italic text-palette-1">George</span>
             </Trail>
           </h1>
-          <p className="title-text">
-            <Trail delayAmount={2000} pulse={true} setMonikers={setMonikers}>
-              <span>{monikers[0]}</span>
-              <span>{monikers[1]}</span>
-            </Trail>
+          <p className="title-text pb-5">
+            <animated.span style={pulse} className="block">
+              {monikers[0]}
+            </animated.span>
+            <animated.span style={pulse} className="block">
+              {monikers[1]}
+            </animated.span>
           </p>
         </div>
       </div>

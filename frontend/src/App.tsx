@@ -10,7 +10,6 @@ function App() {
     <div className="size-full">
       <IntroPage></IntroPage>
       <About></About>
-      <TechStack></TechStack>
       <Projects></Projects>
       <Contact />
     </div>

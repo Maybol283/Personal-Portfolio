@@ -37,28 +37,41 @@ export function AnimatedChevron() {
   );
 }
 
-export const Trail = ({ children, delayAmount, pulse, setMonikers }) => {
+export const Trail = ({ children, delayAmount }) => {
   const items = React.Children.toArray(children);
-  const [open, setOpen] = useState(true); // State to control open/close
-  const [initialDelayDone, setInitialDelayDone] = useState(false); // State to manage the initial delay
-  const [firstLoopDone, setFirstLoopDone] = useState(false);
-
+  const [firstPass, setFirstPass] = useState(true);
   const [trail, api] = useTrail(items.length, () => ({
     from: { opacity: 0, transform: "translateY(20px)" },
-    to: {
-      opacity: open ? 1 : 0,
-      transform: open ? "translateY(0px)" : "translateY(20px)",
-    },
-    loop: pulse ? { reverse: true } : null,
+    to: { opacity: 1, transform: "translateY(0px)" },
+    loop: false,
     config: { duration: 1000, mass: 5, tension: 2000, friction: 200 },
-    delay: initialDelayDone ? 0 : delayAmount, // Conditional delay based on whether initial delay is done
-    onRest: () => {
-      if (!firstLoopDone) {
-        console.log("loop done called");
-        setMonikers(["Next", "Name"]);
-        setFirstLoopDone(true); // Ensure setMonikers is called only once after the first loop
-      }
-    },
+    delay: delayAmount, // Conditional delay based on whether initial delay is done
+  }));
+
+  return (
+    <div>
+      {trail.map((props, index) => (
+        <animated.span
+          key={index}
+          style={props}
+          className={items[index].props.className}
+        >
+          {" "}
+          {items[index].props.children}
+        </animated.span>
+      ))}
+    </div>
+  );
+};
+
+export const PulseTrail = ({ children, delayAmount, monikerChooser }) => {
+  const items = React.Children.toArray(children);
+
+  const [trail, pulseApi] = useTrail(items.length, () => ({
+    from: { opacity: 0, transform: "translateY(20px)" },
+    to: { opacity: 1, transform: "translateY(0px)" },
+    config: { duration: 1000, mass: 5, tension: 2000, friction: 200 },
+    delay: delayAmount, // Conditional delay based on whether initial delay is done
   }));
 
   return (
