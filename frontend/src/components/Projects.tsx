@@ -111,7 +111,7 @@ function Projects() {
   }, [api]);
 
   return (
-    <div className="size-full text-center overflow-hidden my-10">
+    <div className="size-full text-center overflow-hidden my-10" id="about">
       <animated.h1 className="title-text py-20" ref={ref} style={fadeDown}>
         Projects
       </animated.h1>

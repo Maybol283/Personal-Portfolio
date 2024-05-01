@@ -2,25 +2,36 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import React from "react";
-
+import { useScrollContext } from "./ScrollContext";
 const navigation = [
-  { name: "About", href: "#" },
-  { name: "Projects", href: "#" },
-  { name: "Contact", href: "#" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#project" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const refs = useScrollContext();
+
+  const scrollToSection = (refKey) => {
+    const ref = refs[refKey];
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <header className="w-100 fixed top-0 left-0 right-0">
+    <header className="w-100 fixed top-0 left-0 right-0 z-10">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 -m-1.5"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1 ">
-          <h1 className="bg-palette-1 rounded-3xl p-3 font-bold ">GV</h1>
-        </div>
+        <a href="#intropage">
+          <div className="flex lg:flex-1">
+            <h1 className="bg-palette-1 rounded-3xl p-3 font-bold ">GV</h1>
+          </div>
+        </a>
         <div className="flex lg:hidden">
           <button
             type="button"

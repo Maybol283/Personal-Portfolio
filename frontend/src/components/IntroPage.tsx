@@ -86,7 +86,10 @@ export default function IntroPage() {
   }, [bubbleApi]);
 
   return (
-    <div className="pt-20  flex flex-col justify-center items-center font-bold size-full">
+    <div
+      className="pt-20  flex flex-col justify-center items-center font-bold size-full"
+      id="intropage"
+    >
       <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 items-center justify-items-center min-w-full">
         <div className="">
           <animated.div
