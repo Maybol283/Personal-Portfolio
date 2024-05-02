@@ -82,7 +82,7 @@ export default function Example() {
           </div>
         </div>
         <form
-          action="#"
+          action="https://formsubmit.co/george.vanden283@gmail.com"
           method="POST"
           className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48"
         >
@@ -177,7 +177,7 @@ export default function Example() {
             <div className="mt-8 flex justify-end">
               <button
                 type="submit"
-                className="rounded-md bg-palette-1 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-palette-2 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-palette-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Send message
               </button>
