@@ -11,32 +11,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquareJs,
   faReact,
-  faHtml5,
-  faCss3,
-  faPhp,
   faLaravel,
-  faGitAlt,
-  faNodeJs,
-  faGithubSquare,
   faJsSquare,
 } from "@fortawesome/free-brands-svg-icons";
+import Markdown from "../assets/Markdown-Previewer.png";
+import MeoRomano from "../assets/Meo-Romano.png";
+import QuoteGen from "../assets/Quote-Generator.png";
 
 const items = [
   {
-    src: "src/assets/Meo-Romano.png",
+    src: MeoRomano,
     alt: "Meo Romano",
     tech: [faLaravel, faReact, faJsSquare],
     moreInfo:
       "A restaraut website with a fully functioning booking and mailer system",
   },
   {
-    src: "src/assets/Markdown-Previewer.png",
+    src: Markdown,
     alt: "Markdown Maker",
     tech: [faReact, faSquareJs],
     moreInfo: "A text editor which parses text as markdown",
   },
   {
-    src: "src/assets/Quote-Generator.png",
+    src: QuoteGen,
     alt: "Quote Generator",
     tech: [faReact, faSquareJs],
     moreInfo: "A quote generator which access an api to produce random quotes",
@@ -111,7 +108,7 @@ function Projects() {
   }, [api]);
 
   return (
-    <div className="size-full text-center overflow-hidden my-10" id="about">
+    <div className="size-full text-center overflow-hidden my-10" id="project">
       <animated.h1 className="title-text py-20" ref={ref} style={fadeDown}>
         Projects
       </animated.h1>
