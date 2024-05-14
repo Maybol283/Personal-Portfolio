@@ -25,18 +25,21 @@ const items = [
     tech: [faLaravel, faReact, faJsSquare],
     moreInfo:
       "A restaraut website with a fully functioning booking and mailer system",
+    url: "https://meo-romano.georgevanden.co.uk",
   },
   {
     src: Markdown,
     alt: "Markdown Maker",
     tech: [faReact, faSquareJs],
     moreInfo: "A text editor which parses text as markdown",
+    url: "https://meo-romano.georgevanden.co.uk",
   },
   {
     src: QuoteGen,
     alt: "Quote Generator",
     tech: [faReact, faSquareJs],
     moreInfo: "A quote generator which access an api to produce random quotes",
+    url: "https://meo-romano.georgevanden.co.uk",
   },
 ];
 
@@ -117,36 +120,38 @@ function Projects() {
         className="flex h-1/2 whitespace-nowrap text-center"
       >
         {fadeUp.map((item, index) => (
-          <div
-            key={index}
-            className="m-4 p-4 border relative min-w-96 lg:min-w-[800px] h-64 lg:h-96 rounded-lg text-wrap"
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
-          >
-            <animated.div
-              className="border-rounded-lg border-gray-300 rounded-lg absolute top-0 left-0 w-full h-full bg-cover bg-center"
-              style={{
-                ...blur[index],
-                backgroundImage: `url(${duplicatedItems[index].src})`,
-              }}
-            />
-            <animated.p
-              className="text-center subtitle-text"
-              style={fadeUp[index]}
+          <a href={duplicatedItems[index].url}>
+            <div
+              key={index}
+              className="m-4 p-4 border relative min-w-96 lg:min-w-[800px] h-64 lg:h-96 rounded-lg text-wrap"
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
             >
-              {duplicatedItems[index].alt}
-            </animated.p>
-            <animated.p className="text-center" style={fadeUp[index]}>
-              {duplicatedItems[index].moreInfo}
-            </animated.p>
-            {duplicatedItems[index].tech.map((icon) => (
-              <AnimatedFontAwesomeIcon
-                icon={icon}
-                className="mx-1 size-10 md:size-16 lg:size-48"
-                style={fadeUp[index]}
+              <animated.div
+                className="border-rounded-lg border-gray-300 rounded-lg absolute top-0 left-0 w-full h-full bg-cover bg-center"
+                style={{
+                  ...blur[index],
+                  backgroundImage: `url(${duplicatedItems[index].src})`,
+                }}
               />
-            ))}
-          </div>
+              <animated.p
+                className="text-center subtitle-text"
+                style={fadeUp[index]}
+              >
+                {duplicatedItems[index].alt}
+              </animated.p>
+              <animated.p className="text-center" style={fadeUp[index]}>
+                {duplicatedItems[index].moreInfo}
+              </animated.p>
+              {duplicatedItems[index].tech.map((icon) => (
+                <AnimatedFontAwesomeIcon
+                  icon={icon}
+                  className="mx-1 size-10 md:size-16 lg:size-48"
+                  style={fadeUp[index]}
+                />
+              ))}
+            </div>
+          </a>
         ))}
       </animated.div>
     </div>

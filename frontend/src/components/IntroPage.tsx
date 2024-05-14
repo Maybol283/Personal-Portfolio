@@ -96,7 +96,11 @@ export default function IntroPage() {
             style={{ ...popUp, ...bubbleEffect }}
             className="size-48 sm:size-56 md:size-80 lg:size-96 overflow-hidden"
           >
-            <img src={headshot} className="bg-palette-1 size-full object-fit" />
+            <img
+              src={headshot}
+              alt="Headshot of George Vanden"
+              className="bg-palette-1 size-full object-fit"
+            />
           </animated.div>
         </div>
         <div className="text-center overflow-hidden pb-1 w-full">
