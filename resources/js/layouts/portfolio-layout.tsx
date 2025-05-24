@@ -4,8 +4,8 @@ import { type PropsWithChildren } from 'react';
 export default function PortfolioLayout({ children }: PropsWithChildren) {
     return (
         <div className="relative h-screen">
-            <Header />
-            <main className="relative">{children}</main>
+           
+            <main className="h-screen">{children}</main>
         </div>
     );
 }

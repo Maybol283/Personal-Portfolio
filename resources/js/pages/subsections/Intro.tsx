@@ -1,6 +1,6 @@
 import { animated, useSpring } from '@react-spring/web';
 import { useEffect, useState } from 'react';
-import { AnimatedChevron, Trail } from '../SmallComponents/AnimatedItems';
+import { Trail } from '../SmallComponents/AnimatedItems';
 
 export default function IntroPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -107,9 +107,6 @@ export default function IntroPage() {
                         </animated.span>
                     </p>
                 </div>
-            </div>
-            <div className="flex flex-col items-center justify-items-center sm:mt-10">
-                <AnimatedChevron />
             </div>
         </div>
     );

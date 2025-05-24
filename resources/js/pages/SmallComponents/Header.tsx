@@ -1,4 +1,4 @@
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
 import { Menu, X } from 'lucide-react';
 import { Fragment, useState } from 'react';
 
@@ -19,7 +19,7 @@ export default function Header() {
     };
 
     return (
-        <header className="bg-background/80 fixed top-0 right-0 left-0 z-50 backdrop-blur-sm">
+        <header className="fixed top-0 right-0 left-0 z-50 bg-white">
             <nav className="-m-1.5 mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <a href="#intropage">
                     <div className="hidden lg:flex lg:flex-1">
@@ -55,7 +55,7 @@ export default function Header() {
             </nav>
             <Transition show={mobileMenuOpen} as={Dialog} className="lg:hidden" onClose={() => setMobileMenuOpen(false)}>
                 {' '}
-                <Transition.Child
+                <TransitionChild
                     as={Fragment}
                     enter="duration-300 transition ease-in-out duration-500 transform"
                     enterFrom="opacity-0 translate-x-2/3"
@@ -64,10 +64,10 @@ export default function Header() {
                     leaveFrom="opacity-100  translate-x-0"
                     leaveTo="opacity-0 translate-x-2/3"
                 >
-                    <div className="fixed inset-0 z-10">
-                        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-hidden bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div className="fixed inset-0 z-50">
+                        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-hidden bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                             <div className="flex items-center justify-between">
-                                <a href="#" className="-m-1.5 p-1.5">
+                                <a href="#intropage" className="-m-1.5 p-1.5">
                                     <h1 className="bg-palette-1 rounded-3xl p-3 font-bold">GV</h1>
                                 </a>
                                 <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
@@ -95,9 +95,9 @@ export default function Header() {
                                     </div>
                                 </div>
                             </div>
-                        </Dialog.Panel>
+                        </DialogPanel>
                     </div>
-                </Transition.Child>
+                </TransitionChild>
             </Transition>
         </header>
     );

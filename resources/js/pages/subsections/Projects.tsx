@@ -1,18 +1,30 @@
-import { faJsSquare, faLaravel, faReact } from '@fortawesome/free-brands-svg-icons';
+import { faLaravel, faReact } from '@fortawesome/free-brands-svg-icons';
+import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { animated, useInView, useSpring, useSpringRef, useSprings } from '@react-spring/web';
-import { useEffect } from 'react';
-
-// Use a string path instead of an import
-const meoRomanoImage = '/storage/Meo-Romano.PNG';
+import { useEffect, useState } from 'react';
 
 const items = [
     {
-        src: meoRomanoImage,
+        src: '/storage/Projects/Meo-Romano.png',
         alt: 'Meo Romano',
-        tech: [faLaravel, faReact, faJsSquare],
+        tech: [faLaravel, faReact, faDatabase],
         moreInfo: 'A restaraut website with a fully functioning booking and mailer system',
         url: 'https://meo-romano.georgevanden.co.uk',
+    },
+    {
+        src: '/storage/Projects/Garms.png',
+        alt: 'Garms',
+        tech: [faLaravel, faReact, faDatabase],
+        moreInfo: 'An E-Commerce website with a fully functioning shopping cart and checkout system',
+        url: 'https://garms.georgevanden.co.uk',
+    },
+    {
+        src: '/storage/Projects/Ninis-Garments.png',
+        alt: 'Ninis Garments',
+        tech: [faLaravel, faReact, faDatabase],
+        moreInfo: 'An E-Commerce website with a fully functioning shopping cart, checkout system, admin panel, users login, and more',
+        url: 'https://ninis-garments.georgevanden.co.uk',
     },
 ];
 
@@ -21,6 +33,30 @@ const AnimatedFontAwesomeIcon = animated(FontAwesomeIcon);
 const duplicatedItems = [...items, ...items, ...items]; // Triple the items for a smoother loop
 
 function Projects() {
+    const [iconSize, setIconSize] = useState('2x');
+
+    // Update icon size based on window width
+    useEffect(() => {
+        const updateIconSize = () => {
+            if (window.innerWidth >= 1024) {
+                setIconSize('8x');
+            } else if (window.innerWidth >= 768) {
+                setIconSize('3x');
+            } else {
+                setIconSize('2x');
+            }
+        };
+
+        // Initial check
+        updateIconSize();
+
+        // Listen for resize events
+        window.addEventListener('resize', updateIconSize);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', updateIconSize);
+    }, []);
+
     const api = useSpringRef(); // Reference to store the animation
 
     // Create the spring animation
@@ -82,15 +118,14 @@ function Projects() {
     }, [api]);
 
     return (
-        <div className="my-10 size-full overflow-hidden text-center" id="project">
-            <animated.h1 className="title-text py-20" ref={ref} style={fadeDown}>
+        <div className="overflow-hidden text-center" id="project">
+            <animated.h1 className="title-text py-[10vh]" ref={ref} style={fadeDown}>
                 Projects
             </animated.h1>
-            <animated.div style={props} className="flex h-1/2 text-center whitespace-nowrap">
+            <animated.div style={props} className="align-items-center flex text-center whitespace-nowrap">
                 {fadeUp.map((item, index) => (
-                    <a href={duplicatedItems[index].url}>
+                    <a href={duplicatedItems[index].url} key={`project-${index}`}>
                         <div
-                            key={index}
                             className="relative m-4 h-64 min-w-96 rounded-lg border p-4 text-wrap lg:h-96 lg:min-w-[800px]"
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={() => handleMouseLeave(index)}
@@ -108,9 +143,11 @@ function Projects() {
                             <animated.p className="text-center" style={fadeUp[index]}>
                                 {duplicatedItems[index].moreInfo}
                             </animated.p>
-                            {duplicatedItems[index].tech.map((icon) => (
-                                <AnimatedFontAwesomeIcon icon={icon} className="mx-1 size-10 md:size-16 lg:size-48" style={fadeUp[index]} />
-                            ))}
+                            <animated.div className="mt-4 flex justify-center gap-4" style={fadeUp[index]}>
+                                {duplicatedItems[index].tech.map((icon, iconIndex) => (
+                                    <FontAwesomeIcon key={`tech-${iconIndex}`} icon={icon} size={iconSize as any} />
+                                ))}
+                            </animated.div>
                         </div>
                     </a>
                 ))}
