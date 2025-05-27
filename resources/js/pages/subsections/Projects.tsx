@@ -119,7 +119,7 @@ function Projects() {
 
     return (
         <div className="overflow-hidden text-center" id="project">
-            <animated.h1 className="title-text py-[10vh]" ref={ref} style={fadeDown}>
+            <animated.h1 className="title-text font-bold pb-[10vh]" ref={ref} style={fadeDown}>
                 Projects
             </animated.h1>
             <animated.div style={props} className="align-items-center flex text-center whitespace-nowrap">

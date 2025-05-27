@@ -61,15 +61,15 @@ export default function Page() {
                     <IntroPage />
                 </section>
 
-                <section id="about" className="h-screen snap-start scroll-mt-20">
+                <section id="about" className="min-h-screen snap-start scroll-mt-20">
                     <About />
                 </section>
 
-                <section id="project" className="h-screen snap-start scroll-mt-20">
+                <section id="project" className="min-h-screen snap-start scroll-mt-20">
                     <Projects />
                 </section>
 
-                <section id="contact" className="snap-start scroll-mt-20">
+                <section id="contact" className="min-h-screen snap-start scroll-mt-20">
                     <Contact />
                 </section>
             </div>
